@@ -143,22 +143,24 @@ Node.js es un entorno de ejecución de JavaScript basado en el motor V8 de Googl
 
 #### Asynchronous Programming and Callbacks
 
-Las funciones asíncronas permiten que otras operaciones se ejecuten mientras se espera una tarea específica. Los callbacks son funciones que se pasan como argumentos a otras funciones y se llaman cuando se completa una tarea asíncrona. Son una forma común de manejar la asincronía en JavaScript.****
+Las funciones asíncronas permiten que otras operaciones se ejecuten mientras se espera una tarea específica. Los callbacks son funciones que se pasan como argumentos a otras funciones y se llaman cuando se completa una tarea asíncrona. Son una forma común de manejar la asincronía en JavaScript.
 
 ```javascript
-// Callbacks
-setTimeout(() => {
-  console.log("¡Hola, después de 1 segundo!");
-}, 1000);
-
-
-
-// Async/Await
-async function greet() {
-  const message = await promise;
-  console.log(message);
+function doAsyncTask(callback) {
+  setTimeout(function() {
+    console.log("Tarea asíncrona completada");
+    callback();
+  }, 2000);
 }
-greet();
+
+function callbackFunction() {
+  console.log("Callback ejecutado");
+}
+
+console.log("Iniciando tarea asíncrona...");
+doAsyncTask(callbackFunction);
+console.log("Tarea asíncrona en progreso...");
+
 ```
 
 #### Timers
